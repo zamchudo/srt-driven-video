@@ -1,6 +1,6 @@
 ---
 name: srt-driven-video
-description: 文稿/SRT 驱动、代码生成视觉的讲解汇报视频流水线。Use when 用户要把口播稿/汇报内容做成带字幕条的视频（汇报视频、讲解视频、口播视频、发布会风格视频、文稿驱动视频、SRT 驱动动画），覆盖五阶段：大纲 → 文稿+SRT → 分镜 storyboard → HTML/JS 逐镜确定性渲染（Playwright+FFmpeg）→ 拼接交付 final.mp4。支持多画幅（16:9 / 竖屏 9:16 / 4:3 / 正方形）。内含可选音效模块（Freesound CC0 下载、adelay+amix 混音或剪映对点清单，默认关闭）与跨会话 WORKLOG 接力机制。
+description: "以 SRT 为时间基准、代码生成视觉的讲解视频流水线：大纲→文稿+SRT→分镜→逐镜确定性渲染→拼接交付；多画幅（16:9/9:16/4:3/1:1），可选音效模块，WORKLOG 跨会话接力。SRT-driven pipeline that turns a narration script into a code-generated subtitled video: outline → script+SRT → storyboard → deterministic HTML/JS rendering (Playwright+FFmpeg) → final.mp4. Use for 汇报/讲解/口播视频, narrated presentations, explainer or motion-graphics videos."
 ---
 
 # SRT-Driven Video（SRT 驱动视频流水线）
