@@ -20,4 +20,4 @@ pip install playwright imageio-ffmpeg
 
 ## 参考的外部工具
 
-- [vibe-motion/sound](https://github.com/)（Freesound 搜索/下载 CLI，克隆到项目 tools/sound/ 使用）：仓库无 LICENSE，仅作内部下载工具；许可以 Freesound 单条音效 CC0 声明为准。
+- **vibe-motion/sound**（GitHub 上的 Freesound 搜索/下载 CLI，克隆到项目 tools/sound/ 使用）：仓库无 LICENSE，仅作内部下载工具；许可以 Freesound 单条音效 CC0 声明为准。
