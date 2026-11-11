@@ -13,7 +13,7 @@
 
 ## 素材下载（Freesound CC0）
 
-外部工具：**vibe-motion/sound**（GitHub 仓库，克隆到项目 `tools/sound/` 使用；WORKLOG 记录本机实测搜索→下载→解码全链路可用）。注意：**该仓库无 LICENSE，仅作内部下载工具**；真正的许可层是 Freesound 单条音效的声明。
+外部工具：**[vibe-motion/sound](https://github.com/vibe-motion/sound)**（克隆到项目 `tools/sound/` 使用；支持 Freesound/Pixabay/Mixkit/Kenney 搜索下载，本机实测搜索→下载→解码全链路可用）。注意：**克隆时仓库无 LICENSE，仅作内部下载工具**；真正的许可层是 Freesound 单条音效的声明。
 
 ```bash
 python tools/sound/scripts/sfx.py freesound "<英文关键词>" --license cc0 --urls   # 搜索
