@@ -7,7 +7,7 @@ BGM 可选；本视频项目默认无 BGM（真人现场讲解）。
 import argparse, json, re, subprocess, sys
 from pathlib import Path
 
-W, H, FPS = 1920, 1080, 30
+FPS = 30
 
 def get_ffmpeg():
     try:
@@ -47,7 +47,10 @@ def main():
     ap.add_argument("--bgm-volume", type=float, default=-18)
     ap.add_argument("--sfx", default=None, help="预混音效轨（如 output/sfx_mix.wav），等长叠加，不循环")
     ap.add_argument("--cover-time", type=float, default=1.0, help="封面取帧时刻（秒）")
+    ap.add_argument("--size", default="1920x1080",
+                    help="目标画幅 WxH：1920x1080(16:9) / 1080x1920(9:16) / 1440x1080(4:3) / 1080x1080(1:1)")
     args = ap.parse_args()
+    W, H = (int(x) for x in args.size.lower().split("x"))
     ffmpeg = get_ffmpeg()
     proj = Path(args.project_dir).resolve()
     out_dir = proj / "output"

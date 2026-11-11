@@ -190,10 +190,14 @@
   }
 
   function fitStage(stage, viewportWidth, viewportHeight) {
-    const scale = Math.min(viewportWidth / 1920, viewportHeight / 1080);
+    /* 设计尺寸取舞台自身 CSS 宽高（默认 1920x1080；其他画幅在 scene.css 覆盖 .stage 宽高即可，
+       例如竖屏 .stage { width:1080px; height:1920px; }），fitStage 无需改动。 */
+    const dw = stage.offsetWidth || 1920;
+    const dh = stage.offsetHeight || 1080;
+    const scale = Math.min(viewportWidth / dw, viewportHeight / dh);
     stage.style.transform = `scale(${scale})`;
-    stage.style.left = `${(viewportWidth - 1920 * scale) / 2}px`;
-    stage.style.top = `${(viewportHeight - 1080 * scale) / 2}px`;
+    stage.style.left = `${(viewportWidth - dw * scale) / 2}px`;
+    stage.style.top = `${(viewportHeight - dh * scale) / 2}px`;
   }
 
   window.NeonUI = {
