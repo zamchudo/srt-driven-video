@@ -1,7 +1,7 @@
 # srt-driven-video
 
-> Script/SRT in → code-generated motion graphics out.
-> 以 SRT 字幕为唯一时间基准的讲解视频流水线（Kimi skill）：大纲 → 文稿+SRT → 分镜 → HTML/JS 逐镜确定性渲染 → 拼接交付 `final.mp4`。
+> 以 SRT 为时间基准、代码生成视觉的讲解视频流水线：大纲→SRT→分镜→确定性渲染→拼接；多画幅，可选音效，WORKLOG 接力。
+> SRT-driven pipeline turning a narration script into a code-generated subtitled video (Playwright + FFmpeg). Multi-aspect, optional SFX, WORKLOG handoff.
 
 在 [vibe-motion/auto-motion](https://github.com/vibe-motion/auto-motion) 的工程约束（SRT 时间基准、逐镜独立目录、FFmpeg 拼接）上，面向**真人现场讲解的汇报视频**场景演化：增加决策表锁定、每阶段用户确认门、跨会话 WORKLOG 接力，以及可选的 Freesound CC0 卡点音效模块。全流水线在一个真实项目（18 镜 / 187.5s / 1080p30）上完整验证过。
 
