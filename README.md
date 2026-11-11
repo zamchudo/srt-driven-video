@@ -113,4 +113,4 @@ python scripts/render_all.py . --no-subtitle --outdir output/nosub
 
 ## License
 
-本仓库暂未附带 LICENSE。`assets/neon-theme/` 为原创模板；引用的外部工具以其各自声明为准。
+[MIT](LICENSE)。引用的外部工具与素材以其各自声明为准。
