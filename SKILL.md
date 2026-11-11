@@ -52,7 +52,8 @@ python scripts/concat_final.py .                                                
 
 ### 参考的外部 skill / 工具
 
-- **vibe-motion/sound**（GitHub，克隆到项目 tools/sound/）：Freesound 搜索/下载 CLI。**仓库无 LICENSE，仅作内部下载工具**；许可以 Freesound 单条音效 CC0 声明为准。
+- **[vibe-motion/auto-motion](https://github.com/vibe-motion/auto-motion)**：SRT→MG 动画工作流，本 skill 的时间轴校验等工程约束沿用自它（check_timeline.py 注释有标注）。
+- **[vibe-motion/sound](https://github.com/vibe-motion/sound)**：音效搜索/下载 CLI（Freesound/Pixabay/Mixkit/Kenney），克隆到项目 tools/sound/ 使用。**克隆时仓库无 LICENSE，仅作内部下载工具**；许可以 Freesound 单条音效 CC0 声明为准。
 
 ## 交付规格
 
