@@ -9,6 +9,7 @@
 
 - **SRT 是唯一时间基准**：分镜边界必须落在字幕条边界，总跨度误差 ≤0.1s，`check_timeline.py` 强制校验，不过不进下一阶段
 - **确定性渲染**：每镜一个 HTML 页面实现 `window.setTime(t)`，一切动画是 t 的纯函数；Playwright 逐帧截图 + FFmpeg 合成，渲染结果可复现、可任意抽帧质检
+- **多画幅**：16:9 1920×1080（默认）/ 竖屏 9:16 1080×1920 / 4:3 1440×1080 / 正方形 1080×1080，阶段 0 按投放场景锁定
 - **阶段确认门**：首镜样片先定风格，用户拍板后才批量渲染，把返工挡在最便宜的环节
 - **跨会话接力**：`WORKLOG.md` 单一状态载体 + 决策表锁定 + 基线文件冻结，换会话/换模型无缝接手
 - **可选音效模块**（默认关闭）：Freesound CC0 素材 → 时间线预审 → FFmpeg 混音**或**导出剪映手动对点清单
@@ -46,7 +47,7 @@
 │   ├── render_all.py         # 批量渲染（读 storyboard 时长，支持 --no-subtitle/--outdir 变体）
 │   ├── check_timeline.py     # 分镜时间轴 vs SRT 强制校验
 │   ├── check_frames.py       # 关键帧拼图质检（渲染前必做）
-│   ├── concat_final.py       # 拼接 + 规格规范化 + BGM/音效轨 + 封面
+│   ├── concat_final.py       # 拼接 + 规格规范化 + BGM/音效轨 + 封面（--size 多画幅）
 │   ├── mix_sfx.py            # 音效混音（adelay+amix，JSON 时间线驱动，-1dB 限幅）
 │   ├── make_cue_sheet.py     # 剪映手动对点清单导出
 │   ├── verify_sfx.py         # 素材解码验证（时长/电平）
@@ -71,7 +72,7 @@ pip install playwright imageio-ffmpeg pillow
 
 > 用 srt-driven-video 把这份汇报内容做成一个 3 分钟讲解视频
 
-agent 会按五阶段推进。各阶段关键命令（agent 自动执行，此处供人工核对）：
+agent 会按五阶段推进。画幅在阶段 0 与用户确认（竖屏自媒体 1080×1920、横屏 1920×1080、4:3 1440×1080、正方形 1080×1080）。各阶段关键命令（agent 自动执行，此处供人工核对）：
 
 ```bash
 # 阶段 2：分镜时间轴校验（必须通过）
@@ -84,8 +85,9 @@ python scripts/render_scene.py scenes/scene-001 --duration 10.5 --fps 30 --size 
 python scripts/check_frames.py scenes/scene-NNN --times 0.5,3,6,9.2
 python scripts/render_all.py .
 
-# 阶段 4：拼接 + 封面（--cover-time 指定高潮定格帧）
+# 阶段 4：拼接 + 封面（--cover-time 指定高潮定格帧，--size 多画幅）
 python scripts/concat_final.py . --cover-time 109.0
+python scripts/concat_final.py . --size 1080x1920   # 竖屏项目
 
 # 变体：无字幕版（不动 scenes/ 原镜头）
 python scripts/render_all.py . --no-subtitle --outdir output/nosub
@@ -103,7 +105,7 @@ python scripts/render_all.py . --no-subtitle --outdir output/nosub
 
 ## 交付规格与质检
 
-`final.mp4`：1920×1080 / 30fps / h264 / yuv420p，时长精确匹配 SRT 总跨度（帧数 = 时长 × fps 逐一核对）；有音轨时 volumedetect 峰值 ≤ -0.3dB 无削波；`cover.png` 取高潮定格帧（抽帧实测定位，不信标注）。
+`final.mp4`：决策表锁定的画幅（默认 1920×1080）/ 30fps / h264 / yuv420p，时长精确匹配 SRT 总跨度（帧数 = 时长 × fps 逐一核对）；有音轨时 volumedetect 峰值 ≤ -0.3dB 无削波；`cover.png` 取高潮定格帧（抽帧实测定位，不信标注）。
 
 ## 参考与致谢
 
