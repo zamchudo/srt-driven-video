@@ -1,6 +1,6 @@
 ---
 name: srt-driven-video
-description: 文稿/SRT 驱动、代码生成视觉的讲解汇报视频流水线。Use when 用户要把口播稿/汇报内容做成带字幕条的视频（汇报视频、讲解视频、口播视频、发布会风格视频、文稿驱动视频、SRT 驱动动画），覆盖五阶段：大纲 → 文稿+SRT → 分镜 storyboard → HTML/JS 逐镜确定性渲染（Playwright+FFmpeg）→ 拼接交付 final.mp4。内含可选音效模块（Freesound CC0 下载、adelay+amix 混音或剪映对点清单，默认关闭）与跨会话 WORKLOG 接力机制。
+description: 文稿/SRT 驱动、代码生成视觉的讲解汇报视频流水线。Use when 用户要把口播稿/汇报内容做成带字幕条的视频（汇报视频、讲解视频、口播视频、发布会风格视频、文稿驱动视频、SRT 驱动动画），覆盖五阶段：大纲 → 文稿+SRT → 分镜 storyboard → HTML/JS 逐镜确定性渲染（Playwright+FFmpeg）→ 拼接交付 final.mp4。支持多画幅（16:9 / 竖屏 9:16 / 4:3 / 正方形）。内含可选音效模块（Freesound CC0 下载、adelay+amix 混音或剪映对点清单，默认关闭）与跨会话 WORKLOG 接力机制。
 ---
 
 # SRT-Driven Video（SRT 驱动视频流水线）
@@ -57,4 +57,4 @@ python scripts/concat_final.py .                                                
 
 ## 交付规格
 
-final.mp4：1920×1080 / 30fps / h264 / yuv420p，时长精确匹配 SRT 总跨度；cover.png 取高潮定格帧（抽帧实测定位）；核验时长、帧数、规格、音轨电平后更新 WORKLOG 再汇报。
+final.mp4：默认 1920×1080 / 30fps / h264 / yuv420p，时长精确匹配 SRT 总跨度；**画幅在阶段 0 决策表锁定**（16:9 1920×1080 / 竖屏 9:16 1080×1920 / 4:3 1440×1080 / 正方形 1080×1080，渲染与拼接全程同一 `--size`，选择引导见 pipeline.md 阶段 0）；cover.png 取高潮定格帧（抽帧实测定位）；核验时长、帧数、规格、音轨电平后更新 WORKLOG 再汇报。
